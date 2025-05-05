@@ -1,6 +1,7 @@
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from "@prisma/client"
 
 
 export async function GET(request: Request) {
@@ -9,7 +10,8 @@ export async function GET(request: Request) {
     const semester = url.searchParams.get('semester');
     const subject = url.searchParams.get('subject');
 
-    const where: any = {};
+    // Use the generated type instead of `any`
+    const where: Prisma.ResourcesWhereInput = {};
     if (year) where.year = Number(year);
     if (semester) where.semester = Number(semester);
     if (subject) where.subject = subject;
@@ -21,6 +23,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(resources);
 }
+
 
 export async function POST(request: Request) {
     const { year, semester, subject, link } = await request.json();
