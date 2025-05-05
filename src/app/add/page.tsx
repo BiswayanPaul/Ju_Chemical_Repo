@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, FormEvent } from 'react';
-import { useRouter } from "next/navigation";
 
 const AddResource = () => {
     const [year, setYear] = useState('');
@@ -9,7 +8,6 @@ const AddResource = () => {
     const [subject, setSubject] = useState('');
     const [link, setLink] = useState('');
     const [error, setError] = useState('');
-    const router = useRouter();
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
